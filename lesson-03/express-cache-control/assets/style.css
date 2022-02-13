@@ -1,0 +1,15 @@
+:root {
+	--bg-color: #666;
+}
+
+body {
+	background-color: var(--bg-color);
+	color: #eee;
+	font-family: sans-serif;
+	line-height: 1.25;
+}
+
+#container {
+	max-width: 40em;
+	margin: 0 auto;
+}
