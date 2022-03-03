@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Service Wookiee</title>
+    <script defer src="main.js"></script>
+</head>
+
+<body class="bg-cover bg-no-repeat" style="background-image: url('chewie.jpg');">
+    <div class="min-h-screen flex flex-col justify-between">
+        <div
+            class="m-3 border-2 border-amber-500 rounded p-3 bg-amber-100 text-amber-700 flex justify-between items-center">
+            <h1 class="text-2xl font-bold">Service Wookiee</h1>
+            <p>A total of <span id="request-count"
+                    class="font-bold text-amber-100 inline-block px-2 rounded bg-amber-600">0</span>
+                requests have been made since this page was reloaded.</p>
+        </div>
+        <section id="boxes" class="m-3 grid gap-4 grid-cols-3">
+        </section>
+    </div>
+    <template id="template">
+        <div class="rounded border-2 border-yellow-700 bg-yellow-50 text-yellow-800 p-3 flex flex-col">
+            <dl></dl>
+            <textarea readonly class="block my-4 rounded border-2 border-yellow-700 bg-white text-yellow-800 p-3"
+                placeholder="Nothing fetched yet..."></textarea>
+            <button class="rounded p-4 bg-yellow-800 text-white shadow-sm">Fetch</button>
+        </div>
+    </template>
+</body>
+
+</html>
