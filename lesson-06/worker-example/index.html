@@ -1,37 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
     <title>Worker example</title>
-</head>
+  </head>
 
-<body class="bg-gray-50 p-4">
-    <button id="worker" class="p-4 bg-red-500 rounded text-white">Do hard work</button>
-    <button id="clicky" class="p-4 bg-blue-500 rounded text-white">See if you can click me</button>
-    <script>
-        const hardWorkButton = document.querySelector("#worker")
-        const clickButton = document.querySelector("#clicky");
-
-        function doHardWork() {
-            let start = Date.now();
-            console.log("Blocking...");
-            while (Date.now() < start + 3000) { }
-            console.log("Unblocked!")
-        }
-
-        let clickCount = 0;
-        function handleButtonClick(event) {
-            clickCount++
-            event.target.innerText = `Clicked ${clickCount} times`;
-        }
-
-        clickButton.addEventListener("click", handleButtonClick);
-        hardWorkButton.addEventListener("click", doHardWork);
-    </script>
-</body>
-
+  <body class="bg-gray-50 p-4">
+    <button id="worker" class="p-4 bg-red-500 rounded text-white">
+      Do hard work
+    </button>
+    <button id="clicky" class="p-4 bg-blue-500 rounded text-white">
+      See if you can click me
+    </button>
+    <script src="main.js"></script>
+  </body>
 </html>
