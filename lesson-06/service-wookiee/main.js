@@ -1,3 +1,20 @@
+const count = document.querySelector("#request-count");
+let counts = 0;
+
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("sw.js");
+}
+
+navigator.serviceWorker.addEventListener("message", (e) => {
+  console.log(e.data);
+  counter();
+});
+
+function counter() {
+  counts++;
+  count.innerHTML = counts;
+}
+
 const template = document.querySelector("#template").content;
 const boxes = document.querySelector("#boxes");
 
