@@ -2,20 +2,21 @@ const cacheName = "v1";
 
 const cacheAssets = ["index.html", "main.js", "style.css", "chewie.jpg"];
 
-self.addEventListener("install", async e => {
+self.addEventListener("install", async (e) => {
   console.log("installed");
 
   e.waitUntil(
     caches
       .open(cacheName)
-      .then(cache => {
+      .then((cache) => {
         console.log("ServiceWorker: Caching files");
         cache.addAll(cacheAssets);
-      }).then(() => self.skipWaiting())
+      })
+      .then(() => self.skipWaiting())
   );
 });
 
-self.addEventListener("activate", async e => {
+self.addEventListener("activate", async (e) => {
   console.log("Activated");
   // Remove unwanted caches
   e.waitUntil(
@@ -32,9 +33,37 @@ self.addEventListener("activate", async e => {
   );
 });
 
+self.addEventListener("fetch", (event) => {
+  console.log("ServiceWorker: Fetching 22");
+  const url = new URL(event.request.url);
+  let arr = url.pathname.split("/");
 
-self.addEventListener("fetch", async e => {
-  console.log("ServiceWorker: Fetching")
+  if (arr[arr.length - 1] == "fake.css") {
+    let res = new Response("/*CSS*/", {
+      headers: {
+        "content-type": "application/css",
+      },
+    });
+    event.respondWith(res);
+  } else if (arr[arr.length - 1] == "fake.html") {
+    let res = new Response("/*HTML*/", {
+      headers: {
+        "content-type": "application/html",
+      },
+    });
+    event.respondWith(res);
+  } else if (arr[arr.length - 1] == "fake.json") {
+    let res = new Response("/*JSON*/", {
+      headers: {
+        "content-type": "application/json",
+      },
+    });
+    event.respondWith(res);
+  }
+});
+
+self.addEventListener("fetch", async (e) => {
+  console.log("ServiceWorker: Fetching");
   e.respondWith(fetch(e.request).catch(() => caches.match(e.request)));
 
   let client = await clients.get(e.clientId);
@@ -43,19 +72,3 @@ self.addEventListener("fetch", async e => {
     client.postMessage("Besked fra SW");
   }
 });
-
-
-self.addEventListener("fetch", async event => {
-  console.log("ServiceWorker: Fetching")
-
-  const fileName = event.request.url.spilt("/").pop()
-
-  if(fileName === "fake.css") {
-    event.respondWith(
-      new Response()
-    )
-}
-});
-
-
-
