@@ -17,3 +17,20 @@ for (const button of document.querySelectorAll("button[id]")) {
     }
   });
 }
+
+if (navigator.onLine) {
+  console.log("online");
+  document.getElementById("network-status").innerHTML = "Device is online";
+} else {
+  console.log("offline");
+  document.getElementById("network-status").innerHTML = "Device is offline";
+}
+
+navigator.clipboard.writeText("<empty clipboard>").then(
+  function () {
+    /* clipboard successfully set */
+  },
+  function () {
+    /* clipboard write failed */
+  }
+);
